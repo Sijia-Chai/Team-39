@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <img src="https://socialtables.wpenginepowered.com/wp-content/uploads/2019/06/Planning-1.png" alt="vacay" style="width:500px;height:190px";>
+  
+      <h1>Login to plan your experience!</h1>
+  
+    <div class="imgcontainer">
+    
+    </div>
+  
+    <div class="container">
+      <form action="" method='POST'>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter email" name="email" id="email" required></input>
+  
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required></input>
+  
+      <button type="submit" name="Login"> Login </input></button>
+  
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+      </form>
+  
+      <div class="title">
+          <p class="bottom">Don't have an account?  <a class="bottom" href="{{url_for('register')}}"> Sign Up here</a></p>
+      </div>
+      
+      
+  
+    <div class="container" style="background-color:#000000">
+    </div>
+       
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/register">Register</a></li>
+        <li style="float:right"><a class="active" href="/weather">Weather</a></li>
+        <li style="float:right"><a class="active" href="/search">Travel Search</a></li>
+  
+  </ul>
+      
+  </body>
+</html>
