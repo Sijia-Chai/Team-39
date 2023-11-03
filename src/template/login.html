@@ -1,21 +1,124 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
     <title>Home</title>
   </head>
+  <style>
+    body {
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq-E_22yOytBS5V4uPHhTaV_kvkyw2K65R8ROfdRNhdYk4M-9fC_S15ePAgCPYZcxQRDg&usqp=CAU") no-repeat left bottom fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: Fantasy;
+}
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+.active {
+  background-color: #dc8008;
+}
+ul {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+    img {
+  position: relative; /* Use relative positioning */
+  top: 50px; /* Move the image downward by 10 pixels, adjust the value as needed */
+}
+.container {
+  display: flex;
+  }
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  form {
+  border: 3px solid #f1f1f1;
+}
+img {
+  position: relative; /* Use relative positioning */
+  top: 140px;
+  left:-40px /* Move the image downward by 10 pixels, adjust the value as needed */
+}
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+/* Set a style for all buttons */
+button {
+  background-color: #dc8008;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.image {
+    flex: 1;
+   
+    display: flex;
+    justify-content: flex-end;
+    }
+  </style>
   <body>
-    <img src="https://socialtables.wpenginepowered.com/wp-content/uploads/2019/06/Planning-1.png" alt="vacay" style="width:500px;height:190px";>
-  
+    <div class="container" style="text-align: center;">
+      <div class="image">
+    <img src="https://socialtables.wpenginepowered.com/wp-content/uploads/2019/06/Planning-1.png" alt="vacay" style="width:600px;height:300px";>
+  </div>
+  <div class="content">
+    <br>
+    <br><br><br>
       <h1>Login to plan your experience!</h1>
   
-    <div class="imgcontainer">
-    
-    </div>
-  
-    <div class="container">
       <form action="" method='POST'>
   
       <label for="email"><b>Email</b></label>
@@ -29,25 +132,21 @@
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
-    </div>
-      </form>
-  
-      <div class="title">
-          <p class="bottom">Don't have an account?  <a class="bottom" href="{{url_for('register')}}"> Sign Up here</a></p>
+    </form>
+      <p class="bottom">Don't have an account?  <a class="bottom" href="{{url_for('register')}}"> Sign Up here</a></p>
+     </div>
+         
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/register">Register</a></li>
+          <li style="float:right"><a class="active" href="/weather">Location</a></li>
+          <li style="float:right"><a class="active" href="/search">Events Search</a></li>
+    
+    </ul>
+   
       </div>
-      
-      
   
-    <div class="container" style="background-color:#000000">
-    </div>
-       
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/register">Register</a></li>
-        <li style="float:right"><a class="active" href="/weather">Weather</a></li>
-        <li style="float:right"><a class="active" href="/search">Travel Search</a></li>
-  
-  </ul>
+   
       
   </body>
 </html>

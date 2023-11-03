@@ -3,12 +3,24 @@
 	<title>Home</title>
 </head>
 <style>
+h1 {
+  text-align: center;
+  }
+    
+body {
+    margin: auto;
+    width: 640px; 
+    padding: 50px;
+    font-family: Fantasy; 
+    color: #2E475D;    
+  }
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  text-align: center;
 }
 
 li {
@@ -19,7 +31,7 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 20px 14px 14px;
   text-decoration: none;
 }
 
@@ -33,7 +45,7 @@ li a:hover {
 ul {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 85%;
 }
 
 /* Bordered form */
@@ -86,9 +98,12 @@ img.avatar {
   border-radius: 50%;
 }
 
-/* Add padding to containers */
-.container {
-  padding: 16px;
+
+
+.container h3 {
+  font-size: 15px;
+  text-align: center ; 
+/* Change the font size to your desired value */
 }
 
 /* The "Forgot password" text */
@@ -110,18 +125,17 @@ span.psw {
 
 </style>
 <body>
-<img src="https://www.teahub.io/photos/full/90-901827_travel-desktop-wallpaper-clip-art-travel-clipart-png.png" alt="vacay" style="width:500px;height:190px";>
-
-    <h1>Register to plan your experien</h1>
+  <div style="text-align: center;">
+<img src="https://cdn-blog.novoresume.com/articles/extracurricular-activities/bg-mid.png" alt="vacay" style="width:500px;height:190px";>
+  </div>
+    <h1>Sign Up Here</h1>
 
   <div class="container">
-    <h3>Please enter your information below</h3>
+    <h3>Connect with your local activities</h3>
     </div>
     
     <div class="container">
 
-      <form action="{{ url_for('register') }}" method="POST">
-        <div class="msg">{{ msg }}</div> <p class="bottom"> Login  <a class="bottom" href="{{url_for('login')}}"> Login</a></p>
 
         <label for="email"><b>Email</b></label>
         <input id = 'email' name = 'email' type = 'text' placeholder="Enter Your Email" class = 'textbox'/></br></br>
@@ -141,13 +155,13 @@ span.psw {
 
     </div>
 
-  <div class="container" style="background-color:#f1f1f1">
+  <div class="container" style="background-color:#322a2a">
   </div>
      
   <ul>
     <li><a href="/">Home</a></li>
-      <li style="float:right"><a class="active" href="/weather">Weather</a></li>
-      <li style="float:right"><a class="active" href="/search">Travel Search</a></li>
+      <li style="float:center"><a class="active" href="/events">Events</a></li>
+      <li style="float:center"><a class="active" href="/search">Search</a></li>
 
 </ul>
     

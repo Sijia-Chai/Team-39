@@ -1,0 +1,176 @@
+<!doctype html>
+<head>
+	<title>Home</title>
+</head>
+<style>
+
+body {
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq-E_22yOytBS5V4uPHhTaV_kvkyw2K65R8ROfdRNhdYk4M-9fC_S15ePAgCPYZcxQRDg&usqp=CAU") no-repeat left bottom fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: Fantasy;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+.active {
+  background-color: #dc8008;
+}
+ul {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+/* Set a style for all buttons */
+button {
+  background-color: #dc8008;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+ }
+}
+ img {
+  position: relative; /* Use relative positioning */
+  top: 50px; /* Move the image downward by 10 pixels, adjust the value as needed */
+}
+.container {
+            display: flex;
+        }
+.content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+.image {
+    flex: 1;
+   
+    display: flex;
+    justify-content: flex-end;
+    }
+
+</style>
+<body>
+    <div class="container" style="text-align: center;">
+        <div class="image">
+<img src="https://cdn-blog.novoresume.com/articles/extracurricular-activities/bg-mid.png" alt="vacay" style="width:800px;height:400px";>
+</div>
+<div class="content">
+    <h1>Events</h1>
+    <h3>Please enter your location to learn about the events in your area</h3>
+
+	 <form method="post" enctype="multipart/form-data" action="/weather">
+       
+        <label for="city">Please enter city: </label>
+        <br>
+        <input type="text" name="city" style="width: 400px"/> 
+        <br>
+      <button type="submit" href="/weather_ret"> Go! </input></button>
+     </div>
+     </div>
+  <div class="imgcontainer">
+  
+  </div>
+
+  <ul>
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/logout">Sign Out</a></li>
+      <li style="float:right"><a class="active" href="/weather">Location</a></li>
+      <li style="float:right"><a class="active" href="/search">Events Search</a></li>
+
+</ul>
+      
+  </body>
+  
+  </html> 
