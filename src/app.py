@@ -263,3 +263,104 @@ def protected():
         return render_template('profile.html', name=flask_login.current_user.id)
     except:
         return render_template("profile.html", name=session["name"])
+
+# LOGIN WITHOUT GOOGLE AOTH
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if flask.request.method == 'GET':
+        return render_template('login.html')
+
+    email = flask.request.form['email']
+    conn = sqlite3.connect('./database.db', check_same_thread=False)
+    cursor = conn.cursor()
+    # CHECK IF EMAIL EXISTS FIRST
+    cursor.execute("SELECT email FROM users")
+    rows = cursor.fetchall()
+    checkEmail = flask.request.form['email']
+    for x in rows:
+        formatX = str(x)[2:-3]
+        if checkEmail == formatX:
+            # check if email is registered
+            if cursor.execute("SELECT password FROM users WHERE email = '{0}'".format(email)):
+                data = cursor.fetchall()
+                pwd = str(data[0][0])
+                if flask.request.form['password'] == pwd:
+                    user = User()
+                    user.id = email
+                    flask_login.login_user(user)  # okay login in user
+                    # protected is a function defined in this file
+                    return flask.redirect(flask.url_for('protected'))
+
+    # information did not match
+    return render_template('unauth.html')
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flask_login.logout_user()
+    return render_template('home.html')
+
+
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return render_template('unauth.html')
+
+# User registration
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    msg = ''
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form and 'first_name' in request.form and 'last_name' in request.form:
+        email = request.form.get('email')
+        password = request.form.get('password')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        conn = sqlite3.connect('./database.db', check_same_thread=False)
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT user_id FROM users WHERE email = '{0}'".format(email))
+        account = cursor.fetchone()
+
+        if account:
+            msg = 'Account already exists !'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address !'
+        elif not re.match(r'[A-Za-z0-9]+', email):
+            msg = 'Username must contain only characters and numbers !'
+        elif not email or not password or not email:
+            msg = 'Please fill out the form !'
+        else:
+            cursor.execute("INSERT INTO Users (email, password, first_name, last_name) VALUES ('{0}', '{1}', '{2}', '{3}')".format(
+                email, password, first_name, last_name))
+            conn.commit()
+            msg = 'You have successfully registered !'
+        return render_template('profile.html', name=email, msg=msg)
+
+    elif request.method == 'POST':
+        msg = 'Please fill out the form !'
+    return render_template('register.html', msg=msg)
+
+
+def getUserIdFromEmail(email):
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT user_id FROM users WHERE email = '{0}'".format(email))
+    return cursor.fetchone()[0]
+
+
+def isEmailUnique(email):
+    cursor = conn.cursor()
+    if cursor.execute("SELECT email  FROM users WHERE email = '{0}'".format(email)):
+        return False
+    else:
+        return True
+
+
+@require_google_login
+@app.route("/profile")
+def protected():
+    try:
+        return render_template('profile.html', name=flask_login.current_user.id)
+    except:
+        return render_template("profile.html", name=session["name"])
