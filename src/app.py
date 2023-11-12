@@ -11,10 +11,23 @@ import flask
 import requests
 import flask_login
 import webbrowser
-from flaskext.mysql import MySQL
 import re
 import sqlite3
 import os.path
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+ 
+app = Flask(__name__)
+app.debug = True
+ 
+# adding configuration for using a sqlite database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+ 
+# Creating an SQLAlchemy instance
+db = SQLAlchemy(app)
+ 
+if __name__ == '__main__':
+    app.run()
 
 app = Flask(__name__)
 app.secret_key = flask_app_secret
@@ -263,3 +276,68 @@ def protected():
         return render_template('profile.html', name=flask_login.current_user.id)
     except:
         return render_template("profile.html", name=session["name"])
+    
+
+@app.before_request
+def before_request():
+    print('before API request')
+
+# Google Maps Search API
+
+
+@app.route("/search", methods=['GET'])
+def search():
+    return render_template('search.html', supress='True')
+
+
+@app.route('/search', methods=['POST'])
+def CityPlans():
+    # get city name from html form
+    try:
+        print("HERE")
+        response = call_map_api(request.form.get('city'))
+        return render_template('destination.html', city=request.form.get('city'), responseThing=response)
+    except:
+        # showing the error message
+        return render_template('search.html') + "<h3 style = \"color: #ff0000\">An error occured loading up travel recommendations for the city provided</h3>"
+
+# Weather API
+
+
+@app.route("/location", methods=['GET'])
+def weather():
+    return render_template('location.html', supress='True')
+
+
+@app.route('/location', methods=['POST'])
+def getWeather():
+    if request.method == 'POST':
+        response = call_weather_api(request.form.get('city'))
+    # checking the status code of the request
+        if response.status_code == 200:
+            return render_template('weather_ret.html', city=request.form.get('city'), temperature=response.json()['main']['temp'], feels_like=response.json()['main']['feels_like'])
+        else:
+            # showing the error message
+            return render_template('weather.html') + "<h3 style = \"color: #ff0000\">An error occured loading up the weather for the city provided</h3>"
+
+
+# Friends Search
+@app.route("/friends", methods=['GET'])
+def friends():
+    return render_template('friends.html', supress='True')
+
+# http://127.0.0.1:5000/ the default return value
+
+
+@app.route("/")
+def hello_world():
+    try:  # check if google logined
+        return render_template('profile.html') + "<h1 style = \"color: #0000ff\"> " + f"Welcome {session['name']}!" + "</h1>"
+    except:
+        return render_template('home.html') + "<h1 style = \"color: #ff0000\"> You need to log in! </h1>"
+
+
+# run the flask app from Python file running
+if __name__ == "__main__":
+    webbrowser.open_new('http://127.0.0.1:5000/')
+    app.run(port=5000, debug=True, use_reloader=False)
