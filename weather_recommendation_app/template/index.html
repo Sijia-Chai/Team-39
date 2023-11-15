@@ -1,0 +1,25 @@
+<!-- ... (previous HTML code) ... -->
+
+{% if city %}
+    <h2>Recommendations for {{ city }}</h2>
+
+    {% if indoor_events %}
+        <h3>Indoor Events</h3>
+        <ul>
+            {% for event in indoor_events %}
+                <li>{{ event }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if outdoor_events %}
+        <h3>Outdoor Events</h3>
+        <ul>
+            {% for event in outdoor_events %}
+                <li>{{ event }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+
+<!-- ... (remaining HTML code) ... -->
