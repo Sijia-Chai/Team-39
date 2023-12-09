@@ -1,5 +1,8 @@
 # CS411 Team-39
 
+## Present Video Link
+https://youtu.be/qo2Mfr9XcP4
+
 ## Progress and Timeline
 |Assignment|  Description     |  Done?   |
 | ---------|:----------------:| :------: | 
@@ -16,3 +19,4 @@
 2. Integrate a database (SQLite)
 3. Use 3rd party auth (Google)
 4. De-coupled front-end and back-end (js and Flask app.py)
+
