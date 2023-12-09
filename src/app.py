@@ -48,7 +48,7 @@ cursor = conn.cursor()
 cursor.execute("SELECT email FROM users")
 users = cursor.fetchall()
 
-def getUserList():
+def get_Userlist():
     cursor = conn.cursor()
     cursor.execute("SELECT email FROM users")
     return cursor.fetchall()
@@ -87,9 +87,8 @@ def request_loader(request):
 
 # GOOGLE Login
 client_id_google = google_id
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-client_secret_file = os.path.join(pathlib.Path(
-    __file__).parent, "client_secret_google.json")
+os.environ["OAUTH"] = "1"
+client_secret_file = os.path.join(pathlib.Path(__file__).parent, "client_secret_google.json")
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secret_file,
@@ -212,13 +211,13 @@ def register():
         msg = 'You need to fill out the blanks!'
     return render_template('register.html', msg=msg)
 
-def getUserIdFromEmail(email):
+def get_UserId(email):
     cursor = conn.cursor()
     cursor.execute(
         "SELECT user_id FROM users WHERE email = '{0}'".format(email))
     return cursor.fetchone()[0]
 
-def isEmailUnique(email):
+def Email_Unique_Check(email):
     cursor = conn.cursor()
     if cursor.execute("SELECT email  FROM users WHERE email = '{0}'".format(email)):
         return False
@@ -239,9 +238,8 @@ def search():
     return render_template('search.html', supress='True')
 
 @app.route('/search', methods=['POST'])
-def CityPlans():
+def event_recomend():
     try:
-        print("HERE")
         response = call_map_api(request.form.get('city'))
         return render_template('destination.html', city=request.form.get('city'), responseThing=response)
     except:
