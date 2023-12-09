@@ -245,7 +245,7 @@ def CityPlans():
         response = call_map_api(request.form.get('city'))
         return render_template('destination.html', city=request.form.get('city'), responseThing=response)
     except:
-        return render_template('search.html') + "<h3 style = \"color: #ff0000\">An error occured for event recommendations</h3>"
+        return render_template('search.html') + "<h3 style = \"color: #ff0000\">An error occurred for event recommendations</h3>"
 
 # Weather
 @app.route("/weather", methods=['GET'])
@@ -253,27 +253,21 @@ def weather():
     return render_template('weather.html', supress='True')
 
 @app.route('/weather', methods=['POST'])
-def getWeather():
+def weather_display():
     if request.method == 'POST':
         response = call_weather_api(request.form.get('city'))
         if response.status_code == 200:
             return render_template('weather_ret.html', city=request.form.get('city'), temperature=response.json()['main']['temp'], feels_like=response.json()['main']['feels_like'])
         else:
-            return render_template('weather.html') + "<h3 style = \"color: #ff0000\">An error occured for the weather</h3>"
+            return render_template('weather.html') + "<h3 style = \"color: #ff0000\">An error occurred for the weather</h3>"
 
 @app.route("/")
-def hello_world():
+def home():
     try:
         return render_template('profile.html') + "<h1 style = \"color: #0000ff\"> " + f"Welcome {session['name']}!" + "</h1>"
     except:
         return render_template('home.html') 
 
-if __name__ == "__main__":
-    webbrowser.open_new('http://127.0.0.1:5000/')
-    app.run(port=5000, debug=True, use_reloader=False)
-
-
-# run the flask app from Python file running
 if __name__ == "__main__":
     webbrowser.open_new('http://127.0.0.1:5000/')
     app.run(port=5000, debug=True, use_reloader=False)
